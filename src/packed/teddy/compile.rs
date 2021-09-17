@@ -86,8 +86,15 @@ impl Builder {
         if patterns.len() > 64 {
             return None;
         }
+        #[cfg(features = "sgx_trts")]
+        let has_ssse3 = sgx_trts::is_x86_feature_detected!("ssse3");
+        #[cfg(features = "sgx_trts")]
+        let has_avx = sgx_trts::is_x86_feature_detected!("avx2");
+        #[cfg(not(features = "sgx_trts"))]
         let has_ssse3 = is_x86_feature_detected!("ssse3");
+        #[cfg(not(features = "sgx_trts"))]
         let has_avx = is_x86_feature_detected!("avx2");
+
         let avx = if self.avx == Some(true) {
             if !has_avx {
                 return None;
