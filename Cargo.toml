@@ -28,7 +28,7 @@ phala-sgx = ["sgx_trts"]
 
 [dependencies]
 memchr = { version = "2.4.0", default-features = false }
-sgx_trts = { rev = "v1.1.3", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+sgx_trts = { rev = "715ee87e", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
 [dev-dependencies]
 # TODO: Re-enable this once the MSRV is 1.43 or greater.
